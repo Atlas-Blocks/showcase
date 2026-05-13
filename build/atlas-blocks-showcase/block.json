@@ -1,0 +1,14 @@
+{
+  "apiVersion": 3,
+  "name": "atlas-blocks/showcase",
+  "title": "Atlas Blocks Showcase",
+  "category": "design",
+  "icon": "slides",
+  "description": "A premium showcase block.",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.scss",
+  "style": "file:./style.scss"
+}
