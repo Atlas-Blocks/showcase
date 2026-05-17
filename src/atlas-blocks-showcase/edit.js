@@ -19,26 +19,14 @@ export default function Edit( { attributes, setAttributes } ) {
 		title,
 		description,
 		images = [],
-		fitMode,
-		rightStyle,
+		fitMode = 'cover',
+		rightStyle = 'pill',
 	} = attributes;
 
 	const [ isEditing, setIsEditing ] = useState( false );
 
 	const blockProps = useBlockProps({
-		className: `
-			atlas-blocks-showcase
-			${
-				isEditing
-					? 'atlas-blocks-showcase--editing'
-					: 'atlas-blocks-showcase--previewing'
-			}
-			${
-				rightStyle === 'square'
-					? 'atlas-blocks-showcase--square'
-					: ''
-			}
-		`,
+		className: 'atlas-blocks-showcase',
 	});
 
 	const showcaseImages = images;
@@ -74,70 +62,83 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			{ ! isEditing ? (
 
-				<div className="atlas-blocks-showcase__preview-mode">
+				<div
+					className={ `
+						atlas-blocks-showcase__preview-shell
+						${
+							rightStyle === 'square'
+								? 'atlas-blocks-showcase__preview-shell--square'
+								: ''
+						}
+					` }
+				>
 
-					<div className="atlas-blocks-showcase__content">
+					<div className="atlas-blocks-showcase__preview-mode">
 
-						<div className="atlas-blocks-showcase__content-header">
+						<div className="atlas-blocks-showcase__content">
 
-							<button
-								className="atlas-blocks-showcase__edit-button"
-								onClick={ () => setIsEditing( true ) }
-							>
-								Edit
-							</button>
+							<div className="atlas-blocks-showcase__content-header">
+
+								<button
+									className="atlas-blocks-showcase__edit-button"
+									onClick={ () => setIsEditing( true ) }
+								>
+									Edit
+								</button>
+
+							</div>
+
+							<h2>
+								{ title || 'Atlas Blocks Showcase' }
+							</h2>
+
+							<p>
+								{
+									description ||
+									'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
+								}
+							</p>
 
 						</div>
 
-						<h2>
-							{ title || 'Atlas Blocks Showcase' }
-						</h2>
+						<div className="atlas-blocks-showcase__carousel">
 
-						<p>
-							{
-								description ||
-								'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
-							}
-						</p>
+							{ showcaseImages.length > 0 && (
 
-					</div>
+								<>
 
-					<div className="atlas-blocks-showcase__carousel">
+									<button
+										className="atlas-blocks-showcase__button atlas-blocks-showcase__button--prev"
+										onClick={ prevSlide }
+									>
+										<span>‹</span>
+									</button>
 
-						{ showcaseImages.length > 0 && (
+									<img
+										className={
+											fitMode === 'contain'
+												? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain is-active'
+												: 'atlas-blocks-showcase__image is-active'
+										}
+										src={ showcaseImages[ currentSlide ] }
+										alt={ `Slide ${ currentSlide + 1 }` }
+										style={ {
+											objectFit: fitMode,
+											objectPosition: 'center',
+										} }
+									/>
 
-							<>
+									<button
+										className="atlas-blocks-showcase__button atlas-blocks-showcase__button--next"
+										onClick={ nextSlide }
+									>
+										<span>›</span>
+									</button>
 
-								<button
-									className="atlas-blocks-showcase__button atlas-blocks-showcase__button--prev"
-									onClick={ prevSlide }
-								>
-									<span>‹</span>
-								</button>
+								</>
+							) }
 
-								<img
-									className={
-										fitMode === 'contain'
-											? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain'
-											: 'atlas-blocks-showcase__image'
-									}
-									src={ showcaseImages[ currentSlide ] }
-									alt={ `Slide ${ currentSlide + 1 }` }
-									style={{
-										objectFit: fitMode,
-										objectPosition: 'center',
-									}}
-								/>
-
-								<button
-									className="atlas-blocks-showcase__button atlas-blocks-showcase__button--next"
-									onClick={ nextSlide }
-								>
-									<span>›</span>
-								</button>
-
-							</>
-						) }
+						</div>
 
 					</div>
 
@@ -170,9 +171,9 @@ export default function Edit( { attributes, setAttributes } ) {
 									label="Title"
 									value={ title }
 									onChange={ ( value ) =>
-										setAttributes({
+										setAttributes( {
 											title: value,
-										})
+										} )
 									}
 									maxLength={ 40 }
 								/>
@@ -181,34 +182,34 @@ export default function Edit( { attributes, setAttributes } ) {
 									label="Description"
 									value={ description }
 									onChange={ ( value ) =>
-										setAttributes({
+										setAttributes( {
 											description: value,
-										})
+										} )
 									}
 									maxLength={ 220 }
 								/>
 
 								<SelectControl
 									label="Image Fit"
-									value={fitMode}
-									options={[
+									value={ fitMode }
+									options={ [
 										{ label: 'Cover', value: 'cover' },
 										{ label: 'Contain', value: 'contain' },
-									]}
-									onChange={(value) =>
-										setAttributes({ fitMode: value })
+									] }
+									onChange={ ( value ) =>
+										setAttributes( { fitMode: value } )
 									}
 								/>
 
 								<SelectControl
 									label="Right Side Style"
 									value={ rightStyle }
-									options={[
+									options={ [
 										{ label: 'Pill', value: 'pill' },
 										{ label: 'Square', value: 'square' },
-									]}
+									] }
 									onChange={ ( value ) =>
-										setAttributes({ rightStyle: value })
+										setAttributes( { rightStyle: value } )
 									}
 								/>
 
@@ -221,11 +222,11 @@ export default function Edit( { attributes, setAttributes } ) {
 										<MediaUpload
 											onSelect={ ( media ) => {
 
-												setAttributes({
+												setAttributes( {
 													images: media.map(
 														( img ) => img.url
 													),
-												});
+												} );
 
 												setCurrentSlide( 0 );
 											} }
@@ -267,41 +268,40 @@ export default function Edit( { attributes, setAttributes } ) {
 													]
 												}
 												alt={ `Slide ${ currentSlide + 1 }` }
-                                                style={{
-                                                    objectFit: fitMode,
-                                                    objectPosition: 'center',
-                                                }}
-                                            />
-                                        </div>
+												style={ {
+													objectFit: fitMode,
+													objectPosition: 'center',
+												} }
+											/>
+										</div>
 
-                                        <button
-                                            className="atlas-blocks-showcase__button atlas-blocks-showcase__button--prev"
-                                            onClick={ prevSlide }
-                                        >
-                                            <span>‹</span>
-                                        </button>
+										<button
+											className="atlas-blocks-showcase__button atlas-blocks-showcase__button--prev"
+											onClick={ prevSlide }
+										>
+											<span>‹</span>
+										</button>
 
-                                        <button
-                                            className="atlas-blocks-showcase__button atlas-blocks-showcase__button--next"
-                                            onClick={ nextSlide }
-                                        >
-                                            <span>›</span>
-                                        </button>
+										<button
+											className="atlas-blocks-showcase__button atlas-blocks-showcase__button--next"
+											onClick={ nextSlide }
+										>
+											<span>›</span>
+										</button>
 
-                                    </>
-                                )
-                            }
+									</>
+								)
+							}
 
-                        </div>
+						</div>
 
-                    </div>
+					</div>
 
-                </div>
+				</div>
 
-            ) }
+			) }
 
-        </div>
+		</div>
 
-    );
+	);
 }
-

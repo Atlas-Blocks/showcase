@@ -32,16 +32,12 @@ function Edit({
     title,
     description,
     images = [],
-    fitMode,
-    rightStyle
+    fitMode = 'cover',
+    rightStyle = 'pill'
   } = attributes;
   const [isEditing, setIsEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-    className: `
-			atlas-blocks-showcase
-			${isEditing ? 'atlas-blocks-showcase--editing' : 'atlas-blocks-showcase--previewing'}
-			${rightStyle === 'square' ? 'atlas-blocks-showcase--square' : ''}
-		`
+    className: 'atlas-blocks-showcase'
   });
   const showcaseImages = images;
   const [currentSlide, setCurrentSlide] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
@@ -59,48 +55,54 @@ function Edit({
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     ...blockProps,
-    children: !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "atlas-blocks-showcase__preview-mode",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "atlas-blocks-showcase__content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "atlas-blocks-showcase__content-header",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "atlas-blocks-showcase__edit-button",
-            onClick: () => setIsEditing(true),
-            children: "Edit"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-          children: title || 'Atlas Blocks Showcase'
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-          children: description || 'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "atlas-blocks-showcase__carousel",
-        children: showcaseImages.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "atlas-blocks-showcase__button atlas-blocks-showcase__button--prev",
-            onClick: prevSlide,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u2039"
+    children: !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: `
+						atlas-blocks-showcase__preview-shell
+						${rightStyle === 'square' ? 'atlas-blocks-showcase__preview-shell--square' : ''}
+					`,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "atlas-blocks-showcase__preview-mode",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "atlas-blocks-showcase__content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "atlas-blocks-showcase__content-header",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              className: "atlas-blocks-showcase__edit-button",
+              onClick: () => setIsEditing(true),
+              children: "Edit"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-            className: fitMode === 'contain' ? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain' : 'atlas-blocks-showcase__image',
-            src: showcaseImages[currentSlide],
-            alt: `Slide ${currentSlide + 1}`,
-            style: {
-              objectFit: fitMode,
-              objectPosition: 'center'
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            className: "atlas-blocks-showcase__button atlas-blocks-showcase__button--next",
-            onClick: nextSlide,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: "\u203A"
-            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+            children: title || 'Atlas Blocks Showcase'
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+            children: description || 'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
           })]
-        })
-      })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "atlas-blocks-showcase__carousel",
+          children: showcaseImages.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              className: "atlas-blocks-showcase__button atlas-blocks-showcase__button--prev",
+              onClick: prevSlide,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: "\u2039"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+              className: fitMode === 'contain' ? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain is-active' : 'atlas-blocks-showcase__image is-active',
+              src: showcaseImages[currentSlide],
+              alt: `Slide ${currentSlide + 1}`,
+              style: {
+                objectFit: fitMode,
+                objectPosition: 'center'
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              className: "atlas-blocks-showcase__button atlas-blocks-showcase__button--next",
+              onClick: nextSlide,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: "\u203A"
+              })
+            })]
+          })
+        })]
+      })
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "atlas-blocks-showcase__editor-mode",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -271,33 +273,58 @@ function save({
     fitMode = 'cover',
     rightStyle = 'pill'
   } = attributes;
-  const imageSrc = images.length > 0 ? images[0] : 'https://picsum.photos/900/700';
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+  const imageClassName = fitMode === 'contain' ? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain' : 'atlas-blocks-showcase__image';
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
-      className: `
-						atlas-blocks-showcase
-						${rightStyle === 'square' ? 'atlas-blocks-showcase--square' : ''}
-					`
+      className: 'atlas-blocks-showcase'
     }),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "atlas-blocks-showcase__content",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-        children: title
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: description
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "atlas-blocks-showcase__carousel",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-        className: fitMode === 'contain' ? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain' : 'atlas-blocks-showcase__image',
-        src: imageSrc,
-        alt: title || 'Showcase preview',
-        style: {
-          objectFit: fitMode,
-          objectPosition: 'center'
-        }
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: `
+					atlas-blocks-showcase__preview-shell
+					${rightStyle === 'square' ? 'atlas-blocks-showcase__preview-shell--square' : ''}
+				`,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "atlas-blocks-showcase__preview-mode",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "atlas-blocks-showcase__content",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+            children: title || 'Atlas Blocks Showcase'
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            children: description || 'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "atlas-blocks-showcase__carousel",
+          "data-atlas-showcase-carousel": true,
+          children: [images.length > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: "atlas-blocks-showcase__button atlas-blocks-showcase__button--prev",
+            type: "button",
+            "aria-label": "Previous image",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              children: "\u2039"
+            })
+          }), images.map((image, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            className: `
+									${imageClassName}
+									${index === 0 ? 'is-active' : ''}
+								`,
+            src: image,
+            alt: title ? `${title} slide ${index + 1}` : `Showcase preview slide ${index + 1}`,
+            style: {
+              objectFit: fitMode,
+              objectPosition: 'center'
+            },
+            "data-atlas-showcase-slide": true
+          }, image)), images.length > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: "atlas-blocks-showcase__button atlas-blocks-showcase__button--next",
+            type: "button",
+            "aria-label": "Next image",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              children: "\u203A"
+            })
+          })]
+        })]
       })
-    })]
+    })
   });
 }
 

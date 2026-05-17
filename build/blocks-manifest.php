@@ -26,6 +26,10 @@ return array(
 			'fitMode' => array(
 				'type' => 'string',
 				'default' => 'cover'
+			),
+			'rightStyle' => array(
+				'type' => 'string',
+				'default' => 'pill'
 			)
 		),
 		'supports' => array(
@@ -33,6 +37,7 @@ return array(
 		),
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
 	)
 );
