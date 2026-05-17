@@ -17,6 +17,10 @@
     "images": {
       "type": "array",
       "default": []
+    },
+    "fitMode": {
+      "type": "string",
+      "default": "cover"
     }
   },
   "supports": {

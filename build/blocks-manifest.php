@@ -22,6 +22,10 @@ return array(
 				'default' => array(
 					
 				)
+			),
+			'fitMode' => array(
+				'type' => 'string',
+				'default' => 'cover'
 			)
 		),
 		'supports' => array(
