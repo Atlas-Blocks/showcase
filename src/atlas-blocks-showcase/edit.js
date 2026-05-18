@@ -4,7 +4,10 @@ import {
 	TextControl,
 	TextareaControl,
 	Button,
-	SelectControl,
+	ToggleControl,
+	Dropdown,
+	ColorPicker,
+	ColorIndicator,
 } from '@wordpress/components';
 
 import {
@@ -21,7 +24,15 @@ export default function Edit( { attributes, setAttributes } ) {
 		images = [],
 		fitMode = 'cover',
 		rightStyle = 'pill',
+		leftBgColor = '#f3eadc',
+		rightBgColor = '#0f172a',
 	} = attributes;
+
+
+	const previewStyle = {
+		'--atlas-showcase-left-bg': leftBgColor,
+		'--atlas-showcase-right-bg': rightBgColor,
+	};
 
 	const [ isEditing, setIsEditing ] = useState( false );
 
@@ -56,6 +67,42 @@ export default function Edit( { attributes, setAttributes } ) {
 		);
 	};
 
+	const ColorControl = ( { label, value, onChange } ) => (
+		<div className="atlas-blocks-showcase__color-control">
+
+			<span className="atlas-blocks-showcase__color-label">
+				{ label }
+			</span>
+
+			<Dropdown
+				className="atlas-blocks-showcase__color-dropdown"
+				contentClassName="atlas-blocks-showcase__color-popover"
+				renderToggle={ ( { isOpen, onToggle } ) => (
+					<Button
+						className="atlas-blocks-showcase__color-button"
+						onClick={ onToggle }
+						aria-expanded={ isOpen }
+					>
+						<ColorIndicator colorValue={ value } />
+
+						<span className="atlas-blocks-showcase__color-value">
+							{ value }
+						</span>
+					</Button>
+				) }
+				renderContent={ () => (
+					<ColorPicker
+						color={ value }
+						onChange={ onChange }
+						enableAlpha={ false }
+						defaultValue={ value }
+					/>
+				) }
+			/>
+
+		</div>
+	);
+
 	return (
 
 		<div { ...blockProps }>
@@ -71,6 +118,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								: ''
 						}
 					` }
+					style={ previewStyle }
 				>
 
 					<div className="atlas-blocks-showcase__preview-mode">
@@ -189,29 +237,71 @@ export default function Edit( { attributes, setAttributes } ) {
 									maxLength={ 220 }
 								/>
 
-								<SelectControl
-									label="Image Fit"
-									value={ fitMode }
-									options={ [
-										{ label: 'Cover', value: 'cover' },
-										{ label: 'Contain', value: 'contain' },
-									] }
-									onChange={ ( value ) =>
-										setAttributes( { fitMode: value } )
-									}
-								/>
+								<div className="atlas-blocks-showcase__control-row">
 
-								<SelectControl
-									label="Right Side Style"
-									value={ rightStyle }
-									options={ [
-										{ label: 'Pill', value: 'pill' },
-										{ label: 'Square', value: 'square' },
-									] }
-									onChange={ ( value ) =>
-										setAttributes( { rightStyle: value } )
-									}
-								/>
+									<div className="atlas-blocks-showcase__control-item">
+
+										<ToggleControl
+											label="Image Fit"
+											checked={ fitMode === 'contain' }
+											onChange={ ( checked ) =>
+												setAttributes( {
+													fitMode: checked ? 'contain' : 'cover',
+												} )
+											}
+											help={ fitMode === 'contain' ? 'Contain' : 'Cover' }
+										/>
+
+									</div>
+
+									<div className="atlas-blocks-showcase__control-item">
+
+										<ToggleControl
+											label="Right Side Style"
+											checked={ rightStyle === 'square' }
+											onChange={ ( checked ) =>
+												setAttributes( {
+													rightStyle: checked ? 'square' : 'pill',
+												} )
+											}
+											help={ rightStyle === 'square' ? 'Square' : 'Pill' }
+										/>
+
+									</div>
+
+								</div>
+
+								<div className="atlas-blocks-showcase__control-row">
+
+									<div className="atlas-blocks-showcase__control-item">
+
+										<ColorControl
+											label="Left Side Color"
+											value={ leftBgColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													leftBgColor: value,
+												} )
+											}
+										/>
+
+									</div>
+
+									<div className="atlas-blocks-showcase__control-item">
+
+										<ColorControl
+											label="Right Side Color"
+											value={ rightBgColor }
+											onChange={ ( value ) =>
+												setAttributes( {
+													rightBgColor: value,
+												} )
+											}
+										/>
+
+									</div>
+
+								</div>
 
 								<div className="atlas-blocks-showcase__image-upload">
 

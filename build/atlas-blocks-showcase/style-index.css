@@ -50,6 +50,7 @@
 .atlas-blocks-showcase__content {
   width: 30%;
   padding: 56px;
+  background: var(--atlas-showcase-left-bg, #f3eadc);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,7 +76,7 @@
   width: 70%;
   min-height: 480px;
   position: relative;
-  background: #111;
+  background: var(--atlas-showcase-right-bg, #111);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,16 +88,9 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-position: center center;
+     object-position: center center;
   display: block;
-}
-.atlas-blocks-showcase__carousel .atlas-blocks-showcase__image--contain {
-  padding: 18px;
-  box-sizing: border-box;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 8px 18px rgba(0, 0, 0, 0.18);
 }
 .atlas-blocks-showcase__button {
   position: absolute;
@@ -134,8 +128,8 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-position: center center;
+     object-position: center center;
   display: block;
   opacity: 0;
   visibility: hidden;
@@ -151,9 +145,13 @@
 .atlas-blocks-showcase .atlas-blocks-showcase__image--contain {
   padding: 18px;
   box-sizing: border-box;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 8px 18px rgba(0, 0, 0, 0.18);
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center center;
+     object-position: center center;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

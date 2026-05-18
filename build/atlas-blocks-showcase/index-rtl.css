@@ -55,6 +55,7 @@
 .atlas-blocks-showcase__content {
   width: 30%;
   padding: 56px;
+  background: var(--atlas-showcase-left-bg, #f3eadc);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,13 +80,14 @@
 .atlas-blocks-showcase__carousel {
   width: 70%;
   min-height: 480px;
+  background: var(--atlas-showcase-right-bg, #0f172a);
   position: relative;
-  background: #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   box-sizing: border-box;
+  border-radius: 0;
 }
 .atlas-blocks-showcase__carousel .atlas-blocks-showcase__image {
   width: 100%;
@@ -97,11 +99,17 @@
   display: block;
 }
 .atlas-blocks-showcase__carousel .atlas-blocks-showcase__image--contain {
+  width: 100%;
+  height: 100%;
   padding: 18px;
   box-sizing: border-box;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 8px 18px rgba(0, 0, 0, 0.18);
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center center;
+     object-position: center center;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 .atlas-blocks-showcase__button {
   position: absolute;
@@ -201,6 +209,63 @@
   flex-direction: column;
   gap: 28px;
 }
+.atlas-blocks-showcase__control-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.atlas-blocks-showcase__control-item {
+  min-width: 0;
+}
+.atlas-blocks-showcase__control-item .components-base-control {
+  margin-bottom: 0;
+}
+.atlas-blocks-showcase__control-item .components-toggle-control .components-base-control__field {
+  margin-bottom: 0;
+}
+.atlas-blocks-showcase {
+  /*
+  	CUSTOM COLOR CONTROLS
+  */
+}
+.atlas-blocks-showcase__color-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.atlas-blocks-showcase__color-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4b5563;
+}
+.atlas-blocks-showcase__color-button {
+  width: 100%;
+  height: 44px;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 0 12px !important;
+  border: 1px solid rgba(31, 41, 55, 0.08) !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+.atlas-blocks-showcase__color-button .components-color-indicator, .atlas-blocks-showcase__color-button .component-color-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+.atlas-blocks-showcase__color-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
 .atlas-blocks-showcase__image-upload {
   display: flex;
   flex-direction: column;
@@ -210,7 +275,7 @@
   position: relative;
   width: 100%;
   height: 520px;
-  background: #111;
+  background: var(--atlas-showcase-right-bg, #0f172a);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -222,7 +287,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  background: #0f172a;
+  background: var(--atlas-showcase-right-bg, #0f172a);
   padding: 20px;
   box-sizing: border-box;
   display: flex;
@@ -308,7 +373,18 @@
   .atlas-blocks-showcase__editor-layout {
     grid-template-columns: 1fr;
   }
+  .atlas-blocks-showcase__control-row {
+    grid-template-columns: 1fr;
+  }
   .atlas-blocks-showcase__editor-preview {
     height: 420px;
   }
+}
+/*
+	WORDPRESS COLOR PICKER POPOVER
+	This is outside the block because Dropdown popovers can render outside
+	the block wrapper in the editor.
+*/
+.atlas-blocks-showcase__color-popover {
+  padding: 16px;
 }

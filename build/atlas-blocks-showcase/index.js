@@ -33,8 +33,14 @@ function Edit({
     description,
     images = [],
     fitMode = 'cover',
-    rightStyle = 'pill'
+    rightStyle = 'pill',
+    leftBgColor = '#f3eadc',
+    rightBgColor = '#0f172a'
   } = attributes;
+  const previewStyle = {
+    '--atlas-showcase-left-bg': leftBgColor,
+    '--atlas-showcase-right-bg': rightBgColor
+  };
   const [isEditing, setIsEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'atlas-blocks-showcase'
@@ -53,6 +59,40 @@ function Edit({
     }
     setCurrentSlide((currentSlide - 1 + showcaseImages.length) % showcaseImages.length);
   };
+  const ColorControl = ({
+    label,
+    value,
+    onChange
+  }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "atlas-blocks-showcase__color-control",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "atlas-blocks-showcase__color-label",
+      children: label
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Dropdown, {
+      className: "atlas-blocks-showcase__color-dropdown",
+      contentClassName: "atlas-blocks-showcase__color-popover",
+      renderToggle: ({
+        isOpen,
+        onToggle
+      }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        className: "atlas-blocks-showcase__color-button",
+        onClick: onToggle,
+        "aria-expanded": isOpen,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorIndicator, {
+          colorValue: value
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "atlas-blocks-showcase__color-value",
+          children: value
+        })]
+      }),
+      renderContent: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+        color: value,
+        onChange: onChange,
+        enableAlpha: false,
+        defaultValue: value
+      })
+    })]
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     ...blockProps,
     children: !isEditing ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -60,6 +100,7 @@ function Edit({
 						atlas-blocks-showcase__preview-shell
 						${rightStyle === 'square' ? 'atlas-blocks-showcase__preview-shell--square' : ''}
 					`,
+      style: previewStyle,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "atlas-blocks-showcase__preview-mode",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -134,32 +175,50 @@ function Edit({
                 description: value
               }),
               maxLength: 220
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-              label: "Image Fit",
-              value: fitMode,
-              options: [{
-                label: 'Cover',
-                value: 'cover'
-              }, {
-                label: 'Contain',
-                value: 'contain'
-              }],
-              onChange: value => setAttributes({
-                fitMode: value
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-              label: "Right Side Style",
-              value: rightStyle,
-              options: [{
-                label: 'Pill',
-                value: 'pill'
-              }, {
-                label: 'Square',
-                value: 'square'
-              }],
-              onChange: value => setAttributes({
-                rightStyle: value
-              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "atlas-blocks-showcase__control-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "atlas-blocks-showcase__control-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+                  label: "Image Fit",
+                  checked: fitMode === 'contain',
+                  onChange: checked => setAttributes({
+                    fitMode: checked ? 'contain' : 'cover'
+                  }),
+                  help: fitMode === 'contain' ? 'Contain' : 'Cover'
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "atlas-blocks-showcase__control-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
+                  label: "Right Side Style",
+                  checked: rightStyle === 'square',
+                  onChange: checked => setAttributes({
+                    rightStyle: checked ? 'square' : 'pill'
+                  }),
+                  help: rightStyle === 'square' ? 'Square' : 'Pill'
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "atlas-blocks-showcase__control-row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "atlas-blocks-showcase__control-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ColorControl, {
+                  label: "Left Side Color",
+                  value: leftBgColor,
+                  onChange: value => setAttributes({
+                    leftBgColor: value
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "atlas-blocks-showcase__control-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ColorControl, {
+                  label: "Right Side Color",
+                  value: rightBgColor,
+                  onChange: value => setAttributes({
+                    rightBgColor: value
+                  })
+                })
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "atlas-blocks-showcase__image-upload",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
@@ -271,8 +330,14 @@ function save({
     description,
     images = [],
     fitMode = 'cover',
-    rightStyle = 'pill'
+    rightStyle = 'pill',
+    leftBgColor = '#f3eadc',
+    rightBgColor = '#0f172a'
   } = attributes;
+  const previewStyle = {
+    '--atlas-showcase-left-bg': leftBgColor,
+    '--atlas-showcase-right-bg': rightBgColor
+  };
   const imageClassName = fitMode === 'contain' ? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain' : 'atlas-blocks-showcase__image';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
@@ -283,6 +348,7 @@ function save({
 					atlas-blocks-showcase__preview-shell
 					${rightStyle === 'square' ? 'atlas-blocks-showcase__preview-shell--square' : ''}
 				`,
+      style: previewStyle,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "atlas-blocks-showcase__preview-mode",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {

@@ -8,7 +8,14 @@ export default function save( { attributes } ) {
 		images = [],
 		fitMode = 'cover',
 		rightStyle = 'pill',
+		leftBgColor = '#f3eadc',
+		rightBgColor = '#0f172a',
 	} = attributes;
+
+	const previewStyle = {
+		'--atlas-showcase-left-bg': leftBgColor,
+		'--atlas-showcase-right-bg': rightBgColor,
+	};
 
 	const imageClassName =
 		fitMode === 'contain'
@@ -34,6 +41,7 @@ export default function save( { attributes } ) {
 							: ''
 					}
 				` }
+				style={ previewStyle }
 			>
 
 				<div className="atlas-blocks-showcase__preview-mode">
