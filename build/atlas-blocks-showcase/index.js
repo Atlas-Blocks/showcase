@@ -20,8 +20,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/** Edit component for the Atlas Blocks Showcase block */
 
 
+
+// Import components
+
+
+// Import block editor components and hooks
 
 
 function Edit({
@@ -33,20 +39,41 @@ function Edit({
     description,
     images = [],
     fitMode = 'cover',
+    // Default image fit mode
     rightStyle = 'pill',
+    // Default right side style
     leftBgColor = '#f3eadc',
-    rightBgColor = '#0f172a'
+    // Default left background color
+    rightBgColor = '#0f172a' // Default right background color
   } = attributes;
+
+  //Pass saved color settings to the block styles as CSS variables.
   const previewStyle = {
     '--atlas-showcase-left-bg': leftBgColor,
     '--atlas-showcase-right-bg': rightBgColor
   };
+
+  // Default description text if none is provided.
+  const defaultDescription = 'Display your custom Gutenberg blocks in a ' + 'premium split-panel showcase layout.';
+
+  // Default title if none is provided.
+  const defaultTitle = 'Atlas Blocks Showcase';
+
+  // Local state for managing edit mode and carousel
   const [isEditing, setIsEditing] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+
+  // Local state for carousel
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'atlas-blocks-showcase'
   });
+
+  // Use the saved images for the carousel
   const showcaseImages = images;
+
+  // Local state for current slide index
   const [currentSlide, setCurrentSlide] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+
+  // Carousel navigation handlers
   const nextSlide = () => {
     if (showcaseImages.length === 0) {
       return;
@@ -59,6 +86,8 @@ function Edit({
     }
     setCurrentSlide((currentSlide - 1 + showcaseImages.length) % showcaseImages.length);
   };
+
+  // Reusable color picker control for the left and right background colors.
   const ColorControl = ({
     label,
     value,
@@ -113,9 +142,9 @@ function Edit({
               children: "Edit"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-            children: title || 'Atlas Blocks Showcase'
+            children: title || defaultTitle
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-            children: description || 'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
+            children: description || defaultDescription
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "atlas-blocks-showcase__carousel",
@@ -144,7 +173,10 @@ function Edit({
           })
         })]
       })
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    }) :
+    /*#__PURE__*/
+    // Editor interface for customizing the showcase block.
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "atlas-blocks-showcase__editor-mode",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "atlas-blocks-showcase__editor-header",
@@ -320,6 +352,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/** Front end view of the Atlas Blocks Showcase */
+
 
 
 function save({
@@ -330,15 +364,24 @@ function save({
     description,
     images = [],
     fitMode = 'cover',
+    // Default image fit mode
     rightStyle = 'pill',
+    // Default right side style
     leftBgColor = '#f3eadc',
-    rightBgColor = '#0f172a'
+    // Default left background color
+    rightBgColor = '#0f172a' // Default right background color
   } = attributes;
+
+  //Pass saved color settings to the block styles as CSS variables.
   const previewStyle = {
     '--atlas-showcase-left-bg': leftBgColor,
     '--atlas-showcase-right-bg': rightBgColor
   };
+
+  // Apply the contain class only when the user chooses the contain image fit option.
   const imageClassName = fitMode === 'contain' ? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain' : 'atlas-blocks-showcase__image';
+  const defaultDescription = 'Display your custom Gutenberg blocks in a ' + 'premium split-panel showcase layout.';
+  const defaultTitle = 'Atlas Blocks Showcase';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
       className: 'atlas-blocks-showcase'
@@ -354,9 +397,9 @@ function save({
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "atlas-blocks-showcase__content",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
-            children: title || 'Atlas Blocks Showcase'
+            children: title || defaultTitle
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-            children: description || 'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
+            children: description || defaultDescription
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "atlas-blocks-showcase__carousel",

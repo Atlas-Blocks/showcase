@@ -1,3 +1,7 @@
+/**
+	Editor styles for the Atlas Blocks Showcase block.
+*/
+
 .atlas-blocks-showcase {
 	position: relative;
 	display: block;
@@ -26,6 +30,7 @@
 
 		width: 100%;
 
+		// Background and styling for the showcase preview container
 		background:
 			linear-gradient(
 				145deg,
@@ -52,6 +57,7 @@
 
 		box-sizing: border-box;
 
+		// Decorative overlay for lighting effect on the showcase preview
 		&::before {
 			content: "";
 
@@ -88,11 +94,13 @@
 		}
 	}
 
+	// Variant of the preview shell with square right side for the image carousel
 	&__preview-shell--square {
 		border-top-right-radius: 48px;
 		border-bottom-right-radius: 48px;
 	}
 
+	// Sizing and layout for the main preview mode container
 	&__preview-mode {
 		display: flex;
 		align-items: stretch;
@@ -104,6 +112,7 @@
 		box-sizing: border-box;
 	}
 
+	// Primary content area on the left side of the showcase preview
 	&__content {
 		width: 30%;
 		padding: 56px;
@@ -122,6 +131,7 @@
 
 		box-sizing: border-box;
 
+		// Header for the content area
 		h2 {
 			margin: 0 0 20px;
 
@@ -131,6 +141,7 @@
 			color: #1f2937;
 		}
 
+		// Paragraph in the content area
 		p {
 			margin: 0;
 
@@ -141,10 +152,12 @@
 		}
 	}
 
+	// Carousel area on the right side of the showcase preview
 	&__carousel {
 		width: 70%;
 		min-height: 480px;
 
+		// Custom variable background changable by user in editor mode
 		background: var(--atlas-showcase-right-bg, #0f172a);
 
 		position: relative;
@@ -158,6 +171,7 @@
 
 		border-radius: 0;
 
+		// Decorative styling for images within the carousel area if user chooses cover option
 		.atlas-blocks-showcase__image {
 			width: 100%;
 			height: 100%;
@@ -168,6 +182,7 @@
 			display: block;
 		}
 
+		// If user chooses contain option, images is smaller, and centered
 		.atlas-blocks-showcase__image--contain {
 			width: 100%;
 			height: 100%;
@@ -187,6 +202,7 @@
 		}
 	}
 
+	// Button styles for the carousel navigation arrows
 	&__button {
 		position: absolute;
 		top: 50%;
@@ -313,6 +329,7 @@
 		}
 	}
 
+	// Controls the layout for the editor mode, with the form fields on the left and the live preview on the right
 	&__editor-layout {
 		display: grid;
 
@@ -357,6 +374,11 @@
 		gap: 28px;
 	}
 
+	/*
+		Editor control layout
+		Places paired controls side by side and removes default WordPress
+		control spacing so the custom panel stays compact and aligned.
+	*/
 	&__control-row {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -369,6 +391,10 @@
 	&__control-item {
 		min-width: 0;
 	}
+
+	/*
+		Remove default component margins inside custom control rows.
+	*/
 
 	&__control-item .components-base-control {
 		margin-bottom: 0;
@@ -448,6 +474,12 @@
 		gap: 14px;
 	}
 
+	/*
+		Editor image preview
+		Shows a live preview of the carousel image inside the edit panel,
+		using the selected right-side background color.
+	*/
+
 	&__editor-preview {
 		position: relative;
 
@@ -496,6 +528,12 @@
 		}
 	}
 
+	/*
+		WordPress component styling
+		Overrides default Gutenberg input and label styles so the custom
+		editor panel has a more polished, consistent look.
+	*/
+
 	.components-base-control__label {
 		margin-bottom: 8px;
 
@@ -531,6 +569,12 @@
 
 		resize: vertical;
 	}
+
+	/*
+		Editor action buttons
+		Shared styling for the Edit and Done buttons used to switch between
+		the preview layout and the editing panel.
+	*/
 
 	&__edit-button,
 	&__done-button {
@@ -576,6 +620,10 @@
 		}
 	}
 
+	/*
+		Position the Edit button over the preview layout.
+	*/
+
 	&__edit-button {
 		position: absolute;
 
@@ -584,6 +632,12 @@
 
 		z-index: 10;
 	}
+
+	/*
+		Responsive editor and preview layout
+		Stacks the showcase and editor controls on smaller screens so the
+		block stays usable on tablets and mobile-sized editor views.
+	*/
 
 	@media (max-width: 900px) {
 		&__preview-mode {

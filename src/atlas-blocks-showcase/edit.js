@@ -1,5 +1,8 @@
+/** Edit component for the Atlas Blocks Showcase block */
+
 import { useState } from '@wordpress/element';
 
+// Import components
 import {
 	TextControl,
 	TextareaControl,
@@ -10,6 +13,7 @@ import {
 	ColorIndicator,
 } from '@wordpress/components';
 
+// Import block editor components and hooks
 import {
 	MediaUpload,
 	MediaUploadCheck,
@@ -22,28 +26,42 @@ export default function Edit( { attributes, setAttributes } ) {
 		title,
 		description,
 		images = [],
-		fitMode = 'cover',
-		rightStyle = 'pill',
-		leftBgColor = '#f3eadc',
-		rightBgColor = '#0f172a',
+		fitMode = 'cover', // Default image fit mode
+		rightStyle = 'pill', // Default right side style
+		leftBgColor = '#f3eadc', // Default left background color
+		rightBgColor = '#0f172a', // Default right background color
 	} = attributes;
 
 
+	//Pass saved color settings to the block styles as CSS variables.
 	const previewStyle = {
 		'--atlas-showcase-left-bg': leftBgColor,
 		'--atlas-showcase-right-bg': rightBgColor,
 	};
 
+	// Default description text if none is provided.
+	const defaultDescription =
+		'Display your custom Gutenberg blocks in a ' +
+		'premium split-panel showcase layout.';
+
+	// Default title if none is provided.
+	const defaultTitle = 'Atlas Blocks Showcase';
+
+	// Local state for managing edit mode and carousel
 	const [ isEditing, setIsEditing ] = useState( false );
 
+	// Local state for carousel
 	const blockProps = useBlockProps({
 		className: 'atlas-blocks-showcase',
 	});
 
+	// Use the saved images for the carousel
 	const showcaseImages = images;
 
+	// Local state for current slide index
 	const [ currentSlide, setCurrentSlide ] = useState( 0 );
 
+	// Carousel navigation handlers
 	const nextSlide = () => {
 
 		if ( showcaseImages.length === 0 ) {
@@ -67,6 +85,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		);
 	};
 
+	// Reusable color picker control for the left and right background colors.
 	const ColorControl = ( { label, value, onChange } ) => (
 		<div className="atlas-blocks-showcase__color-control">
 
@@ -107,8 +126,9 @@ export default function Edit( { attributes, setAttributes } ) {
 
 		<div { ...blockProps }>
 
+			{ /* If not editing, show the preview mode. Otherwise, show the editor interface. */ }
 			{ ! isEditing ? (
-
+	
 				<div
 					className={ `
 						atlas-blocks-showcase__preview-shell
@@ -127,6 +147,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 							<div className="atlas-blocks-showcase__content-header">
 
+								{/* Show the Edit button in preview mode */ }
 								<button
 									className="atlas-blocks-showcase__edit-button"
 									onClick={ () => setIsEditing( true ) }
@@ -137,14 +158,11 @@ export default function Edit( { attributes, setAttributes } ) {
 							</div>
 
 							<h2>
-								{ title || 'Atlas Blocks Showcase' }
+								{ title || defaultTitle }
 							</h2>
 
 							<p>
-								{
-									description ||
-									'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
-								}
+								{ description || defaultDescription}
 							</p>
 
 						</div>
@@ -154,7 +172,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ showcaseImages.length > 0 && (
 
 								<>
-
+									{ /* Generated carousel controls */ }
 									<button
 										className="atlas-blocks-showcase__button atlas-blocks-showcase__button--prev"
 										onClick={ prevSlide }
@@ -162,6 +180,7 @@ export default function Edit( { attributes, setAttributes } ) {
 										<span>‹</span>
 									</button>
 
+									{ /* Shows current slide image with styling depending on user selection */ }
 									<img
 										className={
 											fitMode === 'contain'
@@ -194,6 +213,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			) : (
 
+				// Editor interface for customizing the showcase block.
 				<div className="atlas-blocks-showcase__editor-mode">
 
 					<div className="atlas-blocks-showcase__editor-header">
@@ -215,6 +235,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 							<div className="atlas-blocks-showcase__editor-fields">
 
+								{/* Title and description fields with max lengths */ }
 								<TextControl
 									label="Title"
 									value={ title }
@@ -241,6 +262,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 									<div className="atlas-blocks-showcase__control-item">
 
+										{/* Toggle control for image fit mode */ }
 										<ToggleControl
 											label="Image Fit"
 											checked={ fitMode === 'contain' }
@@ -256,6 +278,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 									<div className="atlas-blocks-showcase__control-item">
 
+										{/* Toggle control for right side style */ }
 										<ToggleControl
 											label="Right Side Style"
 											checked={ rightStyle === 'square' }
@@ -275,6 +298,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 									<div className="atlas-blocks-showcase__control-item">
 
+										{/* Color control for left side background */ }
 										<ColorControl
 											label="Left Side Color"
 											value={ leftBgColor }
@@ -288,7 +312,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									</div>
 
 									<div className="atlas-blocks-showcase__control-item">
-
+										{/* Color control for right side background */ }
 										<ColorControl
 											label="Right Side Color"
 											value={ rightBgColor }
@@ -309,6 +333,8 @@ export default function Edit( { attributes, setAttributes } ) {
 
 									<MediaUploadCheck>
 
+										{/* Media upload component for selecting multiple 
+										images for the carousel */ }
 										<MediaUpload
 											onSelect={ ( media ) => {
 
@@ -344,6 +370,8 @@ export default function Edit( { attributes, setAttributes } ) {
 
 						</div>
 
+						{/* Live preview of the showcase block within the editor, 
+						reflecting current settings. SHOULD APPEAR SAME AS FRONT END */ }
 						<div className="atlas-blocks-showcase__editor-preview">
 
 							{

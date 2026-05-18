@@ -1,3 +1,9 @@
+/*
+	Front-end showcase block wrapper
+	Keeps the outer block clean so the styled preview shell controls
+	the full visual shape.
+*/
+
 .atlas-blocks-showcase {
 	position: relative;
 	display: block;
@@ -11,6 +17,12 @@
 	overflow: visible;
 
 	box-sizing: border-box;
+
+	/*
+		Main preview shell
+		Creates the large pill-shaped container, 3D shadow, border,
+		and glossy overlay effect.
+	*/
 
 	&__preview-shell {
 		position: relative;
@@ -42,6 +54,8 @@
 		transform-style: preserve-3d;
 
 		box-sizing: border-box;
+
+		//Gloss overlay, adds the soft highlight layer across the full showcase.
 
 		&::before {
 			content: "";
@@ -79,10 +93,19 @@
 		}
 	}
 
+	/*
+		Optional square-right style
+		Softens the right side when the user chooses the square option.
+	*/
 	&__preview-shell--square {
 		border-top-right-radius: 48px;
 		border-bottom-right-radius: 48px;
 	}
+
+	/*
+		Main split layout
+		Holds the left text panel and right carousel panel side by side.
+	*/
 
 	&__preview-mode {
 		display: flex;
@@ -97,6 +120,11 @@
 
 		box-sizing: border-box;
 	}
+
+	/*
+		Left content panel
+		Uses the saved left background color and centers the text content.
+	*/
 
 	&__content {
 		width: 30%;
@@ -136,6 +164,11 @@
 		}
 	}
 
+	/*
+		Right carousel panel
+		Uses the saved right background color and contains the image slides.
+	*/
+
 	&__carousel {
 		width: 70%;
 		min-height: 480px;
@@ -162,6 +195,11 @@
 			display: block;
 		}
 	}
+
+	/*
+		Carousel arrow buttons
+		Positioned over the left and right sides of the carousel.
+	*/
 
 	&__button {
 		position: absolute;
@@ -215,6 +253,12 @@
 		}
 	}
 
+	/*
+		Carousel image slides
+		All slides are stacked on top of each other. The active slide
+		is revealed by adding the is-active class.
+	*/
+
 	.atlas-blocks-showcase__image {
 		position: absolute;
 		inset: 0;
@@ -243,6 +287,12 @@
 		visibility: visible;
 		pointer-events: auto;
 	}
+
+	/*
+		Contain image mode
+		Keeps the full image visible without adding a background,
+		shadow, or rounded image box.
+	*/
 
 	.atlas-blocks-showcase__image--contain {
 		padding: 18px;

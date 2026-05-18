@@ -1,6 +1,11 @@
 /*!*************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/atlas-blocks-showcase/style.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************/
+/*
+	Front-end showcase block wrapper
+	Keeps the outer block clean so the styled preview shell controls
+	the full visual shape.
+*/
 .atlas-blocks-showcase {
   position: relative;
   display: block;
@@ -10,6 +15,11 @@
   box-shadow: none;
   overflow: visible;
   box-sizing: border-box;
+  /*
+  	Main preview shell
+  	Creates the large pill-shaped container, 3D shadow, border,
+  	and glossy overlay effect.
+  */
 }
 .atlas-blocks-showcase__preview-shell {
   position: relative;
@@ -33,9 +43,21 @@
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.55), inset 0 -1px 2px rgba(0, 0, 0, 0.06);
   opacity: 0.8;
 }
+.atlas-blocks-showcase {
+  /*
+  	Optional square-right style
+  	Softens the right side when the user chooses the square option.
+  */
+}
 .atlas-blocks-showcase__preview-shell--square {
   border-top-right-radius: 48px;
   border-bottom-right-radius: 48px;
+}
+.atlas-blocks-showcase {
+  /*
+  	Main split layout
+  	Holds the left text panel and right carousel panel side by side.
+  */
 }
 .atlas-blocks-showcase__preview-mode {
   display: flex;
@@ -46,6 +68,12 @@
   aspect-ratio: 16/7;
   min-height: 600px;
   box-sizing: border-box;
+}
+.atlas-blocks-showcase {
+  /*
+  	Left content panel
+  	Uses the saved left background color and centers the text content.
+  */
 }
 .atlas-blocks-showcase__content {
   width: 30%;
@@ -72,6 +100,12 @@
   line-height: 1.7;
   color: #4b5563;
 }
+.atlas-blocks-showcase {
+  /*
+  	Right carousel panel
+  	Uses the saved right background color and contains the image slides.
+  */
+}
 .atlas-blocks-showcase__carousel {
   width: 70%;
   min-height: 480px;
@@ -91,6 +125,12 @@
   -o-object-position: center center;
      object-position: center center;
   display: block;
+}
+.atlas-blocks-showcase {
+  /*
+  	Carousel arrow buttons
+  	Positioned over the left and right sides of the carousel.
+  */
 }
 .atlas-blocks-showcase__button {
   position: absolute;
@@ -121,6 +161,13 @@
 .atlas-blocks-showcase__button--next {
   right: 24px;
 }
+.atlas-blocks-showcase {
+  /*
+  	Carousel image slides
+  	All slides are stacked on top of each other. The active slide
+  	is revealed by adding the is-active class.
+  */
+}
 .atlas-blocks-showcase .atlas-blocks-showcase__image {
   position: absolute;
   inset: 0;
@@ -141,6 +188,13 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+.atlas-blocks-showcase {
+  /*
+  	Contain image mode
+  	Keeps the full image visible without adding a background,
+  	shadow, or rounded image box.
+  */
 }
 .atlas-blocks-showcase .atlas-blocks-showcase__image--contain {
   padding: 18px;

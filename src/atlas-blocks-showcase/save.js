@@ -1,3 +1,5 @@
+/** Front end view of the Atlas Blocks Showcase */
+
 import { useBlockProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
@@ -6,21 +8,30 @@ export default function save( { attributes } ) {
 		title,
 		description,
 		images = [],
-		fitMode = 'cover',
-		rightStyle = 'pill',
-		leftBgColor = '#f3eadc',
-		rightBgColor = '#0f172a',
+		fitMode = 'cover', // Default image fit mode
+		rightStyle = 'pill', // Default right side style
+		leftBgColor = '#f3eadc', // Default left background color
+		rightBgColor = '#0f172a', // Default right background color
 	} = attributes;
 
+
+	//Pass saved color settings to the block styles as CSS variables.
 	const previewStyle = {
 		'--atlas-showcase-left-bg': leftBgColor,
 		'--atlas-showcase-right-bg': rightBgColor,
 	};
 
+	// Apply the contain class only when the user chooses the contain image fit option.
 	const imageClassName =
 		fitMode === 'contain'
 			? 'atlas-blocks-showcase__image atlas-blocks-showcase__image--contain'
 			: 'atlas-blocks-showcase__image';
+
+	const defaultDescription =
+		'Display your custom Gutenberg blocks in a ' +
+		'premium split-panel showcase layout.';
+
+	const defaultTitle = 'Atlas Blocks Showcase';
 
 	return (
 
@@ -31,6 +42,11 @@ export default function save( { attributes } ) {
 				} )
 			}
 		>
+
+			{/*
+				Preview shell
+				Holds the saved color variables and optional right-side shape class.
+			*/}
 
 			<div
 				className={ `
@@ -46,26 +62,36 @@ export default function save( { attributes } ) {
 
 				<div className="atlas-blocks-showcase__preview-mode">
 
+					{/*
+						Left content panel
+						Displays the block title and description.
+					*/}
 					<div className="atlas-blocks-showcase__content">
 
 						<h2>
-							{ title || 'Atlas Blocks Showcase' }
+							{ title || defaultTitle }
 						</h2>
 
 						<p>
-							{
-								description ||
-								'Display your custom Gutenberg blocks in a premium split-panel showcase layout.'
-							}
+							{ description || defaultDescription }
 						</p>
 
 					</div>
+
+					{/*
+						Right carousel panel
+						Uses data attributes so the front-end carousel script
+						can find the carousel and its slides.
+					*/}
 
 					<div
 						className="atlas-blocks-showcase__carousel"
 						data-atlas-showcase-carousel
 					>
-
+						
+						{/*
+							Only show carousel buttons when there is more than one image.
+						*/}
 						{ images.length > 1 && (
 							<button
 								className="atlas-blocks-showcase__button atlas-blocks-showcase__button--prev"
@@ -75,6 +101,11 @@ export default function save( { attributes } ) {
 								<span>‹</span>
 							</button>
 						) }
+
+						{/*
+							Output each saved image as a carousel slide.
+							The first image starts active by default.
+						*/}
 
 						{ images.map( ( image, index ) => (
 
