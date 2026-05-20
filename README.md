@@ -21,18 +21,9 @@ The front-end preview uses a large rounded pill-style container, while the editi
 
 ## Screenshot
 
-Add your block screenshots here after uploading them to GitHub.
-
-```md
-![Atlas Blocks Showcase preview](your-screenshot-url-here)
-```
-
-Optional multi-screenshot layout:
-
-```html
-<img width="900" alt="Atlas Blocks Showcase front-end preview" src="your-image-url-here" />
-<img width="900" alt="Atlas Blocks Showcase editor controls" src="your-image-url-here" />
-```
+<img width="1300" height="681" alt="Main Screenshot Pill Mode" src="https://github.com/user-attachments/assets/84873520-ea5d-4c92-a6c2-b9691a357c38" />
+<img width="1344" height="700" alt="Main Screenshot Square Mode" src="https://github.com/user-attachments/assets/1a4ff458-3f78-42ee-b881-ad55b7193434" />
+<img width="1324" height="926" alt="Main Screenshot editor Mode" src="https://github.com/user-attachments/assets/371d2188-1900-4d09-8368-30e6b3ccb093" />
 
 ---
 
