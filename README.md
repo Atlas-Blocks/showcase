@@ -21,26 +21,21 @@ The front-end preview uses a large rounded pill-style container, while the editi
 
 ## Screenshot
 
-<p align="center">
-  <img
-    src="https://github.com/user-attachments/assets/84873520-ea5d-4c92-a6c2-b9691a357c38"
-    alt="Main Screenshot Pill Mode"
-    width="900"
-  />
-</p>
+### Main Block Pill Mode
 
-<p align="center">
-  <img
-    src="https://github.com/user-attachments/assets/1a4ff458-3f78-42ee-b881-ad55b7193434"
-    alt="Main Screenshot Square Mode"
-    width="440"
-  />
-  <img
-    src="https://github.com/user-attachments/assets/371d2188-1900-4d09-8368-30e6b3ccb093"
-    alt="Main Screenshot Editor Mode"
-    width="440"
-  />
-</p>
+<img width="1300" height="681" alt="Main Block Pill Mode" src="https://github.com/user-attachments/assets/84873520-ea5d-4c92-a6c2-b9691a357c38" />
+
+<br><br>
+
+### Main Block Square Mode
+
+<img width="1344" height="700" alt="Main Block Square Mode" src="https://github.com/user-attachments/assets/1a4ff458-3f78-42ee-b881-ad55b7193434" />
+
+<br><br>
+
+### Main Block Editor Mode
+
+<img width="1324" height="926" alt="Main Block Editor Mode" src="https://github.com/user-attachments/assets/371d2188-1900-4d09-8368-30e6b3ccb093" />
 
 ---
 
