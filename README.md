@@ -117,9 +117,17 @@ The block includes an image fit option so users can choose how carousel images a
 
 Images fill the carousel area and may be cropped slightly to preserve the design.
 
+| Cover Fit Pill Mode | Cover Fit Square Mode |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/c273ce66-11c5-41b0-83f0-1437f1ee7809" alt="Cover fit example pill mode" height="300" /> | <img src="https://github.com/user-attachments/assets/595c6b5a-72bf-483f-9a97-349a8cd6c063" alt="Cover fit example square mode" height="300" /> |
+
 ### Contain Mode
 
 Images are scaled down so the full image remains visible inside the carousel area. This is useful for screenshots, block previews, UI mockups, or images with important edges that should not be cut off.
+
+| Contain Fit Pill Mode | Contain Fit Square Mode |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/c5f1f4d3-ef09-4c60-af2f-2f9d2ee54fe4" alt="Contain fit example pill mode" height="300" /> | <img src="https://github.com/user-attachments/assets/8e805aaf-1b56-461d-ae92-8fc3db104dc6" alt="Contain fit example square mode" height="300" /> |
 
 ---
 
@@ -131,6 +139,10 @@ The block supports separate background colors for each side of the showcase:
 - Right side color
 
 These are output as CSS variables so the editor preview and front end can stay consistent.
+
+| Custom Color Background Pill Mode | Custom Color Background Square Mode |
+|---|---|
+| <img src="https://github.com/user-attachments/assets/f042e9c6-e8fa-4fa3-9ff1-021c81759c38" alt="Custom color background pill mode" height="300" /> | <img src="https://github.com/user-attachments/assets/9253a486-a6eb-4639-9b83-4ec76ff2d25d" alt="Custom color background square mode" height="300" /> |
 
 ---
 
